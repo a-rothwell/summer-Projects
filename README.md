@@ -1,2 +1,2 @@
 # summer-Projects
-This is the repo for the projects I will code this summer
+This is the repository for the projects I will code this summer
