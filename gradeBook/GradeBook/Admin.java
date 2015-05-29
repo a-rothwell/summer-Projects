@@ -1,7 +1,8 @@
 package GradeBook;
 
 public class Admin extends User {
-
+	private int studentNumber = 0;
+	private int teacherNumber = 0;
 	public Admin(String username, String password) 
 	{
 		// TODO Auto-generated constructor stub
@@ -10,11 +11,13 @@ public class Admin extends User {
 	}
 	private void createNewTeacher(String username, String password)
 	{
-		Teacher username = new Teacher(username, password);
+		teacherArray[teacherNumber] = new Teacher(username, password);
+		
 	}
-	private void createNewStudent(String username, String password, String name)
+	private void createNewStudent(String username, String password)
 	{
-		Student username = new Student(username, password);
+		studentArray[studentNumber] = new Student(username, password);
+		studentNumber++;
 	}
 
 }
