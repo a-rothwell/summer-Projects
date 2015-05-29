@@ -1,4 +1,4 @@
-package GradeBook;
+package GradeBook.Users;
 
 public class User {
 

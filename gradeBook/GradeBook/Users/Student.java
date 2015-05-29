@@ -1,4 +1,5 @@
-package GradeBook;
+package GradeBook.Users;
+
 
 public class Student extends User {
 
