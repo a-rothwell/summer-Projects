@@ -54,31 +54,45 @@ public class GradeBook extends JFrame implements ActionListener
 		{
 			if(e.getSource() == login && checkPassword(username.getText(), password.getText()))
 			{
-				User name;
-				try
-				{
-					 name = findUser(username.getText());
-				}
-				catch(NullPointerException a)
-				{
-					
-				}
-				if(name.getClass() == Admim)
+				String name = username.toString().toUpperCase();
+				if(getUserType(name) == "ADMIN")
 				{
 					showAdminPerspective();
 				}
-			}
+				else if(getUserType(name) == "TEACHER")
+				{
+					showTeacherPerspective();
+				}
+				else if(getUserType(name) == "STUDENT")
+				{
+					showStudentPerspective();
+				}
+			}			
 		}
 		
 		
 	}
-	private User findUser(String text) {
-		// TODO Auto-generated method stub
+	private String getUserType(String name) {
+		User 
 		return null;
+	}
+	private void showStudentPerspective() {
+		// TODO Auto-generated method stub
+		
+	}
+	private void showTeacherPerspective() {
+		// TODO Auto-generated method stub
+		
 	}
 	private void showAdminPerspective()
 	{
-		// TODO Auto-generated method stub
-		
+		JButton addNewStudent = new JButton("Add New Student");
+		JButton addNewTeacher = new JButton("Add New Teacher");
+		addNewStudent.setBounds(250, 500, 100, 50);
+		addNewTeacher.setBounds(250, 500, 100, 50);
+		contentPane.add(addNewStudent);
+		addNewStudent.addActionListener(this);
+		contentPane.add(addNewTeacher);
+		addNewTeacher.addActionListener(this);
 	}
 }

@@ -1,14 +1,15 @@
 package GradeBook.Users;
 
 public class User {
-
-	public User(String username, String password)
+	private String username;
+	private String password;
+	public User(String usernameToSet, String passwordToSet)
 	{
-		// TODO Auto-generated constructor stub
-		System.out.println("User");
+		username = usernameToSet;
+		password = passwordToSet;
 	}
-	public void getUserType()
+	public String getUserType()
 	{
-		
+		return null;
 	}
 }
