@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import GradeBook.Users.User;
+
 public class GradeBook extends JFrame implements ActionListener
 {
 	private Container contentPane;
@@ -50,12 +52,33 @@ public class GradeBook extends JFrame implements ActionListener
 	{
 		if(e.getSource() instanceof JButton)
 		{
-			if(e.getSource() == login)
+			if(e.getSource() == login && checkPassword(username.getText(), password.getText()))
 			{
-				//
+				User name;
+				try
+				{
+					 name = findUser(username.getText());
+				}
+				catch(NullPointerException a)
+				{
+					
+				}
+				if(name.getClass() == Admim)
+				{
+					showAdminPerspective();
+				}
 			}
 		}
 		
+		
+	}
+	private User findUser(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private void showAdminPerspective()
+	{
+		// TODO Auto-generated method stub
 		
 	}
 }

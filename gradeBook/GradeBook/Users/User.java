@@ -7,5 +7,8 @@ public class User {
 		// TODO Auto-generated constructor stub
 		System.out.println("User");
 	}
-
+	public void getUserType()
+	{
+		
+	}
 }
