@@ -14,4 +14,8 @@ public class User implements Serializable{
 	{
 		return username;
 	}
+	public String returnPassword() 
+	{
+		return password;
+	}
 }

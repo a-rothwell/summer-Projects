@@ -21,6 +21,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private FileOutputStream outFileStream;
 	private ObjectOutputStream outObjectStream;
 	private User[] userIndex = new User[100];
+	private User currentUser;
 	public GradeBook() 
 	{
 		//userIndex[0] = new User("New Admin", "New Password");
@@ -46,8 +47,6 @@ public class GradeBook extends JFrame implements ActionListener
 		
 		//saveFile();
 		openFile();
-		System.out.println(userIndex[0].getClass());
-		System.out.println(userIndex[0].returnUserName() + "userName Returned");
 	}
 	public static void main(String args[])
 	{
@@ -56,6 +55,14 @@ public class GradeBook extends JFrame implements ActionListener
 	}
 	private boolean checkPassword(String userName, String password)
 	{
+		for(int i = 0; i < 100; i++)
+		{
+			if(userIndex[i].returnUserName() == userName && userIndex[i].returnPassword() == password)
+			{
+				currentUser = userIndex[i];
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -64,17 +71,16 @@ public class GradeBook extends JFrame implements ActionListener
 		if(e.getSource() instanceof JButton)
 		{
 			if(e.getSource() == login && checkPassword(username.getText(), password.getText()))
-			{
-				String name = username.toString().toUpperCase();
-				if(getUserType(name) == "ADMIN")
+			{ 
+				if(currentUser.getClass().toString() ==  "class GradeBook.Users.Admin")
 				{
 					showAdminPerspective();
 				}
-				else if(getUserType(name) == "TEACHER")
+				else if(currentUser.getClass().toString() ==  "class GradeBook.Users.Teacher")
 				{
 					showTeacherPerspective();
 				}
-				else if(getUserType(name) == "STUDENT")
+				else if(currentUser.getClass().toString() ==  "class GradeBook.Users.Student")
 				{
 					showStudentPerspective();
 				}
