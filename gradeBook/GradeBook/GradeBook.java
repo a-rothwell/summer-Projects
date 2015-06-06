@@ -20,6 +20,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private ObjectInputStream inObjectStream;
 	private FileOutputStream outFileStream;
 	private ObjectOutputStream outObjectStream;
+	private User[] userIndex = new User[100];
 	public GradeBook() 
 	{
 		// TODO Auto-generated constructor stub
@@ -110,15 +111,14 @@ public class GradeBook extends JFrame implements ActionListener
 		{
 			inFileStream = new FileInputStream(inFile);
 			inObjectStream = new ObjectInputStream(inFileStream);
-//			try
-//			{
-//				book = (AddressBookEntry[])inObjectStream.readObject();
-//				empty = inObjectStream.readInt();		
-//			}
-//			catch(ClassNotFoundException e)
-//			{
-//				
-//			}
+			try
+			{
+				userIndex = (User[])inObjectStream.readObject();		
+			}
+			catch(ClassNotFoundException e)
+			{
+				
+			}
 			inObjectStream.close();
 		}
 		catch(IOException e)
@@ -134,18 +134,17 @@ public class GradeBook extends JFrame implements ActionListener
 		chooser = new JFileChooser();
 		chooser.showSaveDialog(null);
 		outFile = chooser.getSelectedFile();
-//		try
-//		{
-//			outFileStream = new FileOutputStream(outFile);
-//			outObjectStream = new ObjectOutputStream(outFileStream);
-//			outObjectStream.writeObject(book);
-//			outObjectStream.close();
-//			outObjectStream.writeInt(empty);
-//		}
-//		catch(IOException e)
-//		{
-//			
-//		}
+		try
+		{
+			outFileStream = new FileOutputStream(outFile);
+			outObjectStream = new ObjectOutputStream(outFileStream);
+			outObjectStream.writeObject(userIndex);
+			outObjectStream.close();
+		}
+		catch(IOException e)
+		{
+			
+		}
 	}	
 
 }
