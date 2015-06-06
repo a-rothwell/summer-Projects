@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.*;
-import GradeBook.Users.User;
+import GradeBook.Users.*;
 
 public class GradeBook extends JFrame implements ActionListener
 {
@@ -23,7 +23,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private User[] userIndex = new User[100];
 	public GradeBook() 
 	{
-		// TODO Auto-generated constructor stub
+		//userIndex[0] = new User("New Admin", "New Password");
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -44,6 +44,10 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane.add(login);
 		login.addActionListener(this);
 		
+		//saveFile();
+		openFile();
+		System.out.println(userIndex[0].getClass());
+		System.out.println(userIndex[0].returnUserName() + "userName Returned");
 	}
 	public static void main(String args[])
 	{
@@ -109,26 +113,25 @@ public class GradeBook extends JFrame implements ActionListener
 		inFile = chooser.getSelectedFile();
 		try
 		{
+			System.out.println("Her e");
 			inFileStream = new FileInputStream(inFile);
 			inObjectStream = new ObjectInputStream(inFileStream);
 			try
 			{
-				userIndex = (User[])inObjectStream.readObject();		
+				userIndex = (User[])inObjectStream.readObject();	
+				System.out.println("Here");
 			}
 			catch(ClassNotFoundException e)
 			{
-				
+				System.out.println("Exception");
 			}
 			inObjectStream.close();
 		}
 		catch(IOException e)
 		{
-			
+			e.printStackTrace();
 		}
 	}	
-	
-	/** This method is used to save the user's address book. It writes all
-	 * the necessary data to a file and save's it a user-chosen location */
 	private void saveFile()
 	{
 		chooser = new JFileChooser();

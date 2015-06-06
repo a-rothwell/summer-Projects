@@ -1,6 +1,8 @@
 package GradeBook.Users;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 	private String username;
 	private String password;
 	public User(String usernameToSet, String passwordToSet)
@@ -8,8 +10,8 @@ public class User {
 		username = usernameToSet;
 		password = passwordToSet;
 	}
-	public String getUserType()
+	public String returnUserName()
 	{
-		return null;
+		return username;
 	}
 }

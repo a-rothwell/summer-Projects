@@ -1,7 +1,9 @@
 package GradeBook.Users;
 
+import java.io.Serializable;
 
-public class Teacher extends User{
+
+public class Teacher extends User implements Serializable{
 
 	public Teacher(String username, String password) 
 	{

@@ -1,7 +1,9 @@
 package GradeBook.Users;
 
+import java.io.Serializable;
 
-public class Admin extends User {
+
+public class Admin extends User implements Serializable{
 	public Admin(String username, String password) 
 	{
 		// TODO Auto-generated constructor stub
