@@ -110,8 +110,9 @@ public class GradeBook extends JFrame implements ActionListener
 		
 		
 	}
-	private void clearCurrentView() {
-		// TODO Auto-generated method stub
+	private void clearCurrentView() 
+	{
+		// TODO Create Method to clear all JFrame objects on screen
 		
 	}
 	private void loginprotocol()
@@ -150,11 +151,13 @@ public class GradeBook extends JFrame implements ActionListener
 		userIndex[0] = new Admin("A", "P");
 		saveFile();
 	}
-	private void showStudentPerspective() {
+	private void showStudentPerspective() 
+	{
 		// TODO Auto-generated method stub
 		
 	}
-	private void showTeacherPerspective() {
+	private void showTeacherPerspective() 
+	{
 		// TODO Auto-generated method stub
 		
 	}

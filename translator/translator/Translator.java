@@ -2,7 +2,8 @@ package translator;
 
 public class Translator {
 
-	public Translator() {
+	public Translator() 
+	{
 		// TODO Auto-generated constructor stub
 	}
 
