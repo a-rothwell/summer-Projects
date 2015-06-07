@@ -1,6 +1,6 @@
 package GradeBook.Users;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class User implements Serializable{
 	private String username;

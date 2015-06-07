@@ -4,16 +4,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+
 import javax.swing.*;
+
 import GradeBook.Users.*;
 
 public class GradeBook extends JFrame implements ActionListener
 {
+	private int schoolSize = 0;
 	private JFileChooser chooser;
 	private Container contentPane;
 	private JTextField username = new JTextField();
 	private JTextField password = new JTextField();
 	private JButton login = new JButton("Login");
+	private JButton newAdmin = new JButton("New Admin");
+	private JButton openFile = new JButton("Open File");
 	private File inFile;
 	private File outFile;
 	private FileInputStream inFileStream;
@@ -24,7 +29,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private User currentUser;
 	public GradeBook() 
 	{
-		//userIndex[0] = new User("New Admin", "New Password");
+		//
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -45,23 +50,30 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane.add(login);
 		login.addActionListener(this);
 		
-		//saveFile();
-		openFile();
+		newAdmin.setBounds(200, 450, 100,50);
+		contentPane.add(newAdmin);
+		newAdmin.addActionListener(this);
+		
+		openFile.setBounds(400, 450, 100,50);
+		contentPane.add(openFile);
+		openFile.addActionListener(this);
 	}
 	public static void main(String args[])
 	{
 		GradeBook frame = new GradeBook();
 		frame.setVisible(true);
 	}
-	private boolean checkPassword(String userName, String password)
+	private boolean checkPassword(String password)
 	{
-		for(int i = 0; i < 100; i++)
+		int i = 0;
+		while(currentUser == null)
 		{
-			if(userIndex[i].returnUserName() == userName && userIndex[i].returnPassword() == password)
+			if(userIndex[i].returnPassword().toString() == password)
 			{
 				currentUser = userIndex[i];
 				return true;
 			}
+			i++;
 		}
 		return false;
 	}
@@ -70,8 +82,9 @@ public class GradeBook extends JFrame implements ActionListener
 	{
 		if(e.getSource() instanceof JButton)
 		{
-			if(e.getSource() == login && checkPassword(username.getText(), password.getText()))
+			if(e.getSource() == login)
 			{ 
+				loginprotocol();
 				if(currentUser.getClass().toString() ==  "class GradeBook.Users.Admin")
 				{
 					showAdminPerspective();
@@ -84,14 +97,49 @@ public class GradeBook extends JFrame implements ActionListener
 				{
 					showStudentPerspective();
 				}
-			}			
+			}
+			else if(e.getSource() == newAdmin)
+			{
+				newAdmin();
+			}
+			else if(e.getSource() == openFile)
+			{
+				openFile();
+			}
 		}
 		
 		
 	}
-	private String getUserType(String name) {
-		//User 
-		return null;
+	private void loginprotocol()
+	{
+		// TODO Auto-generated method stub
+		findUser();
+		checkPassword(password.getText().toUpperCase());
+	}
+	private void findUser() throws NullPointerException {
+		// TODO Auto-generated method stub
+		int i = 0;
+		while(currentUser == null)
+		{
+			String name = userIndex[0].returnUserName();
+			System.out.println(name);
+			String loginName = username.getText().toString();
+			System.out.println(loginName);
+			if(name == loginName)
+			{
+				currentUser = userIndex[i];
+			}
+			if(i > schoolSize)
+			{
+				throw new NullPointerException();
+			}
+			i++;
+		}
+	}
+	private void newAdmin() 
+	{
+		userIndex[0] = new Admin("A", "P");
+		saveFile();
 	}
 	private void showStudentPerspective() {
 		// TODO Auto-generated method stub
@@ -111,6 +159,7 @@ public class GradeBook extends JFrame implements ActionListener
 		addNewStudent.addActionListener(this);
 		contentPane.add(addNewTeacher);
 		addNewTeacher.addActionListener(this);
+		repaint();
 	}
 	private void openFile()
 	{
@@ -119,17 +168,14 @@ public class GradeBook extends JFrame implements ActionListener
 		inFile = chooser.getSelectedFile();
 		try
 		{
-			System.out.println("Her e");
 			inFileStream = new FileInputStream(inFile);
 			inObjectStream = new ObjectInputStream(inFileStream);
 			try
 			{
 				userIndex = (User[])inObjectStream.readObject();	
-				System.out.println("Here");
 			}
 			catch(ClassNotFoundException e)
 			{
-				System.out.println("Exception");
 			}
 			inObjectStream.close();
 		}
