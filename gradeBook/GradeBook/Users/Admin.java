@@ -8,7 +8,6 @@ public class Admin extends User implements Serializable{
 	{
 		// TODO Auto-generated constructor stub
 		super(username, password);
-		Student studentArray[] = new Student[100];
 	}
 	private void createNewTeacher(String username, String password)
 	{
@@ -18,9 +17,4 @@ public class Admin extends User implements Serializable{
 	{
 		
 	}
-	public void print()
-	{
-		System.out.println("Here");
-	}
-
 }

@@ -84,10 +84,9 @@ public class GradeBook extends JFrame implements ActionListener
 			if(e.getSource() == login)
 			{ 
 				loginprotocol();
-				System.out.println(currentUser.getClass().toString());
-				System.out.println(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"));
 				if(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"))
 				{
+					clearCurrentView();
 					showAdminPerspective();
 				}
 				else if(currentUser.getClass().toString().equals("class GradeBook.Users.Teacher"))
@@ -109,6 +108,10 @@ public class GradeBook extends JFrame implements ActionListener
 			}
 		}
 		
+		
+	}
+	private void clearCurrentView() {
+		// TODO Auto-generated method stub
 		
 	}
 	private void loginprotocol()
