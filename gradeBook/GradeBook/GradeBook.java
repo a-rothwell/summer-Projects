@@ -11,7 +11,7 @@ import GradeBook.Users.*;
 
 public class GradeBook extends JFrame implements ActionListener
 {
-	private int schoolSize = 0;
+	private int schoolSize = 100;
 	private JFileChooser chooser;
 	private Container contentPane;
 	private JTextField username = new JTextField();
@@ -29,7 +29,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private User currentUser;
 	public GradeBook() 
 	{
-		//
+		userIndex[1] = new Admin("Admin 2", "Password 2");
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -68,9 +68,8 @@ public class GradeBook extends JFrame implements ActionListener
 		int i = 0;
 		while(currentUser == null)
 		{
-			if(userIndex[i].returnPassword().toString() == password)
+			if(userIndex[i].returnPassword().equals(password))
 			{
-				currentUser = userIndex[i];
 				return true;
 			}
 			i++;
@@ -85,15 +84,17 @@ public class GradeBook extends JFrame implements ActionListener
 			if(e.getSource() == login)
 			{ 
 				loginprotocol();
-				if(currentUser.getClass().toString() ==  "class GradeBook.Users.Admin")
+				System.out.println(currentUser.getClass().toString());
+				System.out.println(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"));
+				if(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"))
 				{
 					showAdminPerspective();
 				}
-				else if(currentUser.getClass().toString() ==  "class GradeBook.Users.Teacher")
+				else if(currentUser.getClass().toString().equals("class GradeBook.Users.Teacher"))
 				{
 					showTeacherPerspective();
 				}
-				else if(currentUser.getClass().toString() ==  "class GradeBook.Users.Student")
+				else if(currentUser.getClass().toString().equals("class GradeBook.Users.Student"))
 				{
 					showStudentPerspective();
 				}
@@ -119,24 +120,27 @@ public class GradeBook extends JFrame implements ActionListener
 	private void findUser() throws NullPointerException {
 		// TODO Auto-generated method stub
 		int i = 0;
-		while(i != schoolSize + 1)
+		while(currentUser == null)
 		{
-			String name = userIndex[0].returnUserName();
-			System.out.println(name);
-			String loginName = username.getText().toString();
-			System.out.println(loginName);
-			if(name == loginName)
+			try
 			{
-				currentUser = userIndex[i];
-				System.out.println("Here");
+				String name = userIndex[i].returnUserName();
+				String loginName = username.getText().toString();
+				if(name.equals(loginName))
+				{
+					currentUser = userIndex[i];
+				}
+				i++;
+			}
+			catch (NullPointerException e)
+			{
+				i++;
 			}
 			if(i > schoolSize)
 			{
-				//throw new NullPointerException();
+				throw new NullPointerException();
 			}
-			i++;
 		}
-		System.out.println("Here 1");
 	}
 	private void newAdmin() 
 	{
@@ -155,8 +159,8 @@ public class GradeBook extends JFrame implements ActionListener
 	{
 		JButton addNewStudent = new JButton("Add New Student");
 		JButton addNewTeacher = new JButton("Add New Teacher");
-		addNewStudent.setBounds(250, 500, 100, 50);
-		addNewTeacher.setBounds(250, 500, 100, 50);
+		addNewStudent.setBounds(250, 500, 200, 50);
+		addNewTeacher.setBounds(250, 550, 200, 50);
 		contentPane.add(addNewStudent);
 		addNewStudent.addActionListener(this);
 		contentPane.add(addNewTeacher);
