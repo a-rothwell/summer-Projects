@@ -1,12 +1,9 @@
 package GradeBook;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-
 import javax.swing.*;
-
 import GradeBook.Users.*;
 
 public class GradeBook extends JFrame implements ActionListener
@@ -19,6 +16,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private JButton login = new JButton("Login");
 	private JButton newAdmin = new JButton("New Admin");
 	private JButton openFile = new JButton("Open File");
+	private JButton logout = new JButton("Logout");
 	private File inFile;
 	private File outFile;
 	private FileInputStream inFileStream;
@@ -57,26 +55,14 @@ public class GradeBook extends JFrame implements ActionListener
 		openFile.setBounds(400, 450, 100,50);
 		contentPane.add(openFile);
 		openFile.addActionListener(this);
+		
+		logout.setBounds(0,0,50,50);
 	}
 	public static void main(String args[])
 	{
 		GradeBook frame = new GradeBook();
 		frame.setVisible(true);
 	}
-	private boolean checkPassword(String password)
-	{
-		int i = 0;
-		while(currentUser == null)
-		{
-			if(userIndex[i].returnPassword().equals(password))
-			{
-				return true;
-			}
-			i++;
-		}
-		return false;
-	}
-	
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource() instanceof JButton)
@@ -84,19 +70,6 @@ public class GradeBook extends JFrame implements ActionListener
 			if(e.getSource() == login)
 			{ 
 				loginprotocol();
-				if(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"))
-				{
-					clearCurrentView();
-					showAdminPerspective();
-				}
-				else if(currentUser.getClass().toString().equals("class GradeBook.Users.Teacher"))
-				{
-					showTeacherPerspective();
-				}
-				else if(currentUser.getClass().toString().equals("class GradeBook.Users.Student"))
-				{
-					showStudentPerspective();
-				}
 			}
 			else if(e.getSource() == newAdmin)
 			{
@@ -106,23 +79,81 @@ public class GradeBook extends JFrame implements ActionListener
 			{
 				openFile();
 			}
+			else if(e.getSource() == logout)
+			{
+				logout();
+			}
 		}
-		
-		
+	}
+	private void logout() 
+	{
+		saveFile();
+		currentUser = null;
+		clearCurrentView();
+		loginView();
+	}
+	private void loginView() 
+	{
+		contentPane.add(username);
+		contentPane.add(password);
+		contentPane.add(login);
+		contentPane.add(openFile);
+		contentPane.add(newAdmin);
+		repaint();
 	}
 	private void clearCurrentView() 
 	{
-		// TODO Create Method to clear all JFrame objects on screen
-		
+		contentPane.removeAll();
+		repaint();
 	}
 	private void loginprotocol()
 	{
-		// TODO Auto-generated method stub
 		findUser();
-		checkPassword(password.getText().toUpperCase());
+		if(checkPassword(password.getText()))
+		{
+			changeView();
+		}
+		else
+		{
+			compatiblityMismatch();
+		}
 	}
-	private void findUser() throws NullPointerException {
-		// TODO Auto-generated method stub
+	private void changeView() 
+	{
+		if(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"))
+		{
+			clearCurrentView();
+			showAdminPerspective();
+		}
+		else if(currentUser.getClass().toString().equals("class GradeBook.Users.Teacher"))
+		{
+			showTeacherPerspective();
+		}
+		else if(currentUser.getClass().toString().equals("class GradeBook.Users.Student"))
+		{
+			showStudentPerspective();
+		}
+	}
+	private boolean checkPassword(String password)
+	{
+		if(currentUser.returnPassword().equals(password))
+		{
+			System.out.println("Password Correct");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	private void compatiblityMismatch() 
+	{
+		username.setText(null);
+		password.setText(null);
+		System.out.println("Incorrect Username or Password");
+	}
+	private void findUser() 
+	{
 		int i = 0;
 		while(currentUser == null)
 		{
@@ -133,16 +164,17 @@ public class GradeBook extends JFrame implements ActionListener
 				if(name.equals(loginName))
 				{
 					currentUser = userIndex[i];
+					System.out.println("Found User");
 				}
 				i++;
 			}
-			catch (NullPointerException e)
+			catch(NullPointerException e)
 			{
 				i++;
 			}
-			if(i > schoolSize)
+			catch(IndexOutOfBoundsException e)
 			{
-				throw new NullPointerException();
+				compatiblityMismatch();
 			}
 		}
 	}
@@ -163,6 +195,8 @@ public class GradeBook extends JFrame implements ActionListener
 	}
 	private void showAdminPerspective()
 	{
+		logout.addActionListener(this);
+		contentPane.add(logout);
 		JButton addNewStudent = new JButton("Add New Student");
 		JButton addNewTeacher = new JButton("Add New Teacher");
 		addNewStudent.setBounds(250, 500, 200, 50);
@@ -210,8 +244,7 @@ public class GradeBook extends JFrame implements ActionListener
 		}
 		catch(IOException e)
 		{
-			
+			e.printStackTrace();
 		}
 	}	
-
 }
