@@ -119,7 +119,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private void findUser() throws NullPointerException {
 		// TODO Auto-generated method stub
 		int i = 0;
-		while(currentUser == null)
+		while(i != schoolSize + 1)
 		{
 			String name = userIndex[0].returnUserName();
 			System.out.println(name);
@@ -128,13 +128,15 @@ public class GradeBook extends JFrame implements ActionListener
 			if(name == loginName)
 			{
 				currentUser = userIndex[i];
+				System.out.println("Here");
 			}
 			if(i > schoolSize)
 			{
-				throw new NullPointerException();
+				//throw new NullPointerException();
 			}
 			i++;
 		}
+		System.out.println("Here 1");
 	}
 	private void newAdmin() 
 	{
