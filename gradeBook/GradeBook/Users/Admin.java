@@ -6,12 +6,4 @@ public class Admin extends User implements Serializable{
 	{
 		super(username, password);
 	}
-	private void createNewTeacher(String username, String password)
-	{
-		
-	}
-	private void createNewStudent(String username, String password)
-	{
-		
-	}
 }

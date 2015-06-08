@@ -17,13 +17,15 @@ public class GradeBook extends JFrame implements ActionListener
 	private JButton newAdmin = new JButton("New Admin");
 	private JButton openFile = new JButton("Open File");
 	private JButton logout = new JButton("Logout");
+	private JButton addNewStudent = new JButton("Add New Student");
+	private JButton addNewTeacher = new JButton("Add New Teacher");
 	private File inFile;
 	private File outFile;
 	private FileInputStream inFileStream;
 	private ObjectInputStream inObjectStream;
 	private FileOutputStream outFileStream;
 	private ObjectOutputStream outObjectStream;
-	private User[] userIndex = new User[100];
+	private User[] userIndex = new User[schoolSize];
 	private User currentUser;
 	public GradeBook() 
 	{
@@ -56,7 +58,12 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane.add(openFile);
 		openFile.addActionListener(this);
 		
+		addNewStudent.setBounds(250, 500, 200, 50);
+		addNewStudent.addActionListener(this);
+		addNewTeacher.setBounds(250, 550, 200, 50);
+		addNewTeacher.addActionListener(this);
 		logout.setBounds(0,0,50,50);
+		logout.addActionListener(this);
 	}
 	public static void main(String args[])
 	{
@@ -82,6 +89,14 @@ public class GradeBook extends JFrame implements ActionListener
 			else if(e.getSource() == logout)
 			{
 				logout();
+			}
+			else if(e.getSource() == addNewTeacher)
+			{
+				addNewTeacher();
+			}
+			else if(e.getSource() == addNewStudent)
+			{
+				addNewStudent();
 			}
 		}
 	}
@@ -117,6 +132,8 @@ public class GradeBook extends JFrame implements ActionListener
 		{
 			compatiblityMismatch();
 		}
+		username.setText(null);
+		password.setText(null);
 	}
 	private void changeView() 
 	{
@@ -175,6 +192,7 @@ public class GradeBook extends JFrame implements ActionListener
 			catch(IndexOutOfBoundsException e)
 			{
 				compatiblityMismatch();
+				break;
 			}
 		}
 	}
@@ -182,6 +200,14 @@ public class GradeBook extends JFrame implements ActionListener
 	{
 		userIndex[0] = new Admin("A", "P");
 		saveFile();
+	}
+	private void addNewStudent() {
+		// TODO Auto-generated method stub
+		
+	}
+	private void addNewTeacher() {
+		// TODO Auto-generated method stub
+		
 	}
 	private void showStudentPerspective() 
 	{
@@ -195,16 +221,9 @@ public class GradeBook extends JFrame implements ActionListener
 	}
 	private void showAdminPerspective()
 	{
-		logout.addActionListener(this);
 		contentPane.add(logout);
-		JButton addNewStudent = new JButton("Add New Student");
-		JButton addNewTeacher = new JButton("Add New Teacher");
-		addNewStudent.setBounds(250, 500, 200, 50);
-		addNewTeacher.setBounds(250, 550, 200, 50);
 		contentPane.add(addNewStudent);
-		addNewStudent.addActionListener(this);
 		contentPane.add(addNewTeacher);
-		addNewTeacher.addActionListener(this);
 		repaint();
 	}
 	private void openFile()

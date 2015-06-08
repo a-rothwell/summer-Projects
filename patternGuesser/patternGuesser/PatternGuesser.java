@@ -1,10 +1,7 @@
 package patternGuesser;
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
-import GradeBook.GradeBook;
 
 public class PatternGuesser extends JFrame implements ActionListener
 {
