@@ -38,7 +38,8 @@ public class PatternGuesser extends JFrame implements ActionListener
 			patternFinder();
 		}
 	}
-	private void patternFinder() {
+	private void patternFinder() 
+	{
 		// TODO Auto-generated method stub
 		
 	}

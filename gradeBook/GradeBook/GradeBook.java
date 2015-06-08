@@ -201,11 +201,13 @@ public class GradeBook extends JFrame implements ActionListener
 		userIndex[0] = new Admin("A", "P");
 		saveFile();
 	}
-	private void addNewStudent() {
+	private void addNewStudent()
+	{
 		// TODO Auto-generated method stub
 		
 	}
-	private void addNewTeacher() {
+	private void addNewTeacher()
+	{
 		// TODO Auto-generated method stub
 		
 	}
