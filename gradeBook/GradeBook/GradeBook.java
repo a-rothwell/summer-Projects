@@ -14,11 +14,11 @@ public class GradeBook extends JFrame implements ActionListener
 	private JTextField username = new JTextField();
 	private JTextField password = new JTextField();
 	private JButton login = new JButton("Login");
-	private JButton newAdmin = new JButton("New Admin");
 	private JButton openFile = new JButton("Open File");
 	private JButton logout = new JButton("Logout");
 	private JButton addNewStudent = new JButton("Add New Student");
 	private JButton addNewTeacher = new JButton("Add New Teacher");
+	private JLabel userList[] = new JLabel[schoolSize];
 	private File inFile;
 	private File outFile;
 	private FileInputStream inFileStream;
@@ -29,7 +29,6 @@ public class GradeBook extends JFrame implements ActionListener
 	private User currentUser;
 	public GradeBook() 
 	{
-		userIndex[1] = new Admin("Admin 2", "Password 2");
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,30 +39,19 @@ public class GradeBook extends JFrame implements ActionListener
 		
 		username.setBounds(300,250,100,50);
 		username.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		contentPane.add(username);
-		
 		password.setBounds(300,350,100,50);
 		password.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		contentPane.add(password);
-		
 		login.setBounds(300, 450, 100,50);
-		contentPane.add(login);
 		login.addActionListener(this);
-		
-		newAdmin.setBounds(200, 450, 100,50);
-		contentPane.add(newAdmin);
-		newAdmin.addActionListener(this);
-		
 		openFile.setBounds(400, 450, 100,50);
-		contentPane.add(openFile);
 		openFile.addActionListener(this);
-		
 		addNewStudent.setBounds(250, 500, 200, 50);
 		addNewStudent.addActionListener(this);
 		addNewTeacher.setBounds(250, 550, 200, 50);
 		addNewTeacher.addActionListener(this);
 		logout.setBounds(0,0,50,50);
 		logout.addActionListener(this);
+		loginView();
 	}
 	public static void main(String args[])
 	{
@@ -77,10 +65,6 @@ public class GradeBook extends JFrame implements ActionListener
 			if(e.getSource() == login)
 			{ 
 				loginprotocol();
-			}
-			else if(e.getSource() == newAdmin)
-			{
-				newAdmin();
 			}
 			else if(e.getSource() == openFile)
 			{
@@ -113,7 +97,6 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane.add(password);
 		contentPane.add(login);
 		contentPane.add(openFile);
-		contentPane.add(newAdmin);
 		repaint();
 	}
 	private void clearCurrentView() 
@@ -137,9 +120,9 @@ public class GradeBook extends JFrame implements ActionListener
 	}
 	private void changeView() 
 	{
+		clearCurrentView();
 		if(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"))
 		{
-			clearCurrentView();
 			showAdminPerspective();
 		}
 		else if(currentUser.getClass().toString().equals("class GradeBook.Users.Teacher"))
@@ -196,14 +179,9 @@ public class GradeBook extends JFrame implements ActionListener
 			}
 		}
 	}
-	private void newAdmin() 
-	{
-		userIndex[0] = new Admin("A", "P");
-		saveFile();
-	}
 	private void addNewStudent()
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 	private void addNewTeacher()
@@ -226,7 +204,12 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane.add(logout);
 		contentPane.add(addNewStudent);
 		contentPane.add(addNewTeacher);
+		showUsers();
 		repaint();
+	}
+	private void showUsers() {
+		// TODO Auto-generated method stub
+		
 	}
 	private void openFile()
 	{
