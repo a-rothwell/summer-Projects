@@ -1,4 +1,4 @@
-package GradeBook.Objects;
+package gradeBook.objects;
 
 public class Assigment {
 

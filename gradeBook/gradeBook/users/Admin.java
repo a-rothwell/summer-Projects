@@ -1,4 +1,4 @@
-package GradeBook.Users;
+package gradeBook.users;
 import java.io.*;
 
 public class Admin extends User implements Serializable{
