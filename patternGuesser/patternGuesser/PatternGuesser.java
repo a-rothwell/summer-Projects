@@ -1,6 +1,7 @@
 package patternGuesser;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Point2D;
 
 import javax.swing.*;
 
@@ -52,8 +53,8 @@ public class PatternGuesser extends JFrame implements ActionListener
 	}
 	private void patternFinder() 
 	{
-		Point one = new Point(Integer.parseInt((numberFieldOneX.getText())) , Integer.parseInt(numberFieldOneY.getText()));
-		Point two = new Point(Integer.parseInt((numberFieldTwoX.getText())) , Integer.parseInt(numberFieldTwoY.getText()));
+		Point2D.Double one = new Point2D.Double(Double.parseDouble((numberFieldOneX.getText())) , Double.parseDouble((numberFieldOneY.getText())));
+		Point2D.Double two = new Point2D.Double(Double.parseDouble((numberFieldTwoX.getText())) , Double.parseDouble((numberFieldTwoY.getText())));
 		System.out.println((two.getY()-one.getY())/(two.getX()-one.getX()));
 	}
 
