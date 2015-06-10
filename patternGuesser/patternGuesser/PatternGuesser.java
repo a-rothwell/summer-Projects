@@ -1,12 +1,16 @@
 package patternGuesser;
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class PatternGuesser extends JFrame implements ActionListener
 {
 	private Container contentPane;
-	private JTextField numberField = new JTextField();
+	private JTextField numberFieldOneX = new JTextField();
+	private JTextField numberFieldOneY = new JTextField();
+	private JTextField numberFieldTwoX = new JTextField();
+	private JTextField numberFieldTwoY = new JTextField();
 	private JButton numberSubmit = new JButton("Submit");
 	public PatternGuesser() 
 	{
@@ -18,11 +22,19 @@ public class PatternGuesser extends JFrame implements ActionListener
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
-		numberField.setBounds(250,250,100,50);
-		numberField.addActionListener(this);
-		contentPane.add(numberField);
+		numberFieldOneX.setBounds(250,250,25,25);
+		contentPane.add(numberFieldOneX);
 		
-		numberSubmit.setBounds(250,350,100,50);
+		numberFieldOneY.setBounds(275,250,25,25);
+		contentPane.add(numberFieldOneY);
+		
+		numberFieldTwoX.setBounds(250,325,25,25);
+		contentPane.add(numberFieldTwoX);
+		
+		numberFieldTwoY.setBounds(275,325,25,25);
+		contentPane.add(numberFieldTwoY);
+		
+		numberSubmit.setBounds(250,400,100,50);
 		numberSubmit.addActionListener(this);
 		contentPane.add(numberSubmit);
 	}
@@ -40,8 +52,9 @@ public class PatternGuesser extends JFrame implements ActionListener
 	}
 	private void patternFinder() 
 	{
-		// TODO Auto-generated method stub
-		
+		Point one = new Point(Integer.parseInt((numberFieldOneX.getText())) , Integer.parseInt(numberFieldOneY.getText()));
+		Point two = new Point(Integer.parseInt((numberFieldTwoX.getText())) , Integer.parseInt(numberFieldTwoY.getText()));
+		System.out.println((two.getY()-one.getY())/(two.getX()-one.getX()));
 	}
 
 }
