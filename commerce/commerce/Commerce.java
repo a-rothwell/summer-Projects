@@ -1,7 +1,8 @@
 package commerce;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Container;
+import java.awt.event.*;
+import java.util.*;
 
 import javax.swing.JFrame;
 
@@ -11,12 +12,31 @@ import javax.swing.JFrame;
  */
 public class Commerce extends JFrame implements ActionListener
 {
-
+	private static final int XCONSTANT = 20;
+	private static final int YCONSTANT = 20;
+	private Container contentPane;
+	Timer timer = new Timer();
+	Tile map[][] = new Tile[XCONSTANT][YCONSTANT];
 	public Commerce() 
 	{
-		// TODO Auto-generated constructor stub
+		contentPane = getContentPane();
+		contentPane.setLayout(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("Commerce");
+		setSize(1000,1000);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		for(int i = 0; i < XCONSTANT;i++)
+		{
+			for(int j = 0; j < YCONSTANT; j++)
+			{
+				map[i][j] = new Tile(i,j);
+				map[i][j].setLocation(i*20 + 50, j*20 + 50);
+				contentPane.add(map[i][j]);
+			}
+		}
+		repaint();
 	}
-
 	/**
 	 * @param args
 	 */
@@ -30,5 +50,4 @@ public class Commerce extends JFrame implements ActionListener
 		// TODO Auto-generated method stub
 		
 	}
-
 }
