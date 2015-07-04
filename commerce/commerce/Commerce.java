@@ -2,16 +2,22 @@ package commerce;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Event;
 import java.awt.event.*;
 import java.util.*;
+
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 
 /**
  * @author Andrew
  * @version Alpha .001A;
  */
-public class Commerce extends JFrame,  implements ActionListener
+@SuppressWarnings("serial")
+public class Commerce extends JFrame implements ActionListener
 {
 	private static final int XCONSTANT = 20;
 	private static final int YCONSTANT = 20;
@@ -27,7 +33,7 @@ public class Commerce extends JFrame,  implements ActionListener
 	Tile map[][] = new Tile[XCONSTANT][YCONSTANT];
 	public Commerce() 
 	{
-		addKeyListener(this);
+		addKeyMap();
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		contentPane = getContentPane();
@@ -49,20 +55,22 @@ public class Commerce extends JFrame,  implements ActionListener
 		}
 		repaint();
 	}
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) 
 	{
 		Commerce frame = new Commerce();
 		frame.setVisible(true);
 	}
-	
+	protected void addKeyMap()
+	{
+		InputMap inputMap = new InputMap();
+		KeyStroke key = KeyStroke.getAWTKeyStrokeForEvent(anEvent)
+		inputMap.put(changeSelectorColor(GREEN),key);
+	}
 	public void keyPressed(KeyEvent k)
 	{
 		if(k.getKeyCode() == KeyEvent.VK_1)
 		{
-			changeSelectorColor(GREEN);
+			
 		}
 		else if(k.getKeyCode() == KeyEvent.VK_2)
 		{
@@ -81,8 +89,6 @@ public class Commerce extends JFrame,  implements ActionListener
 			changeSelectorColor(WHITE);
 		}
 	}
-	public void keyReleased(KeyEvent k){}
-	public void keyTyped(KeyEvent k) {}
 	private void changeSelectorColor(Color constantColor) 
 	{
 		selectorColor = constantColor;
