@@ -19,6 +19,7 @@ import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 public class Commerce extends JFrame implements ActionListener, KeyListener
 {
+	private boolean startSelected = false;
 	private final int XCONSTANT = 20;
 	private final int YCONSTANT = 20;
 	private final Color RED = Color.RED;
@@ -55,6 +56,19 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 			}
 		}
 		repaint();
+		selectorColor = RED;
+		selectStart();
+	}
+	private void selectStart()
+	{
+		for(int i = 1; i < XCONSTANT - 1;i++)
+		{
+			for(int j = 1; j < YCONSTANT - 1; j++)
+			{
+				map[i][j].setEnabled(false);
+			}
+		}
+		repaint();
 	}
 	public static void main(String[] args) 
 	{
@@ -64,7 +78,11 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 	@Override
 	public void keyPressed(KeyEvent k)
 	{
-		if(k.getKeyCode() == KeyEvent.VK_1)
+		if(selectorColor == RED && startSelected == false)
+		{
+			changeSelectorColor(RED);
+		}
+		else if(k.getKeyCode() == KeyEvent.VK_1)
 		{
 			changeSelectorColor(GREEN);
 		}
@@ -95,6 +113,16 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 	{
 		if(e.getSource() instanceof JButton)
 		{
+			if(selectorColor == RED)
+			{
+				for(int i = 1; i < XCONSTANT - 1;i++)
+				{
+					for(int j = 1; j < YCONSTANT - 1; j++)
+					{
+						map[i][j].setEnabled(true);
+					}
+				}
+			}
 			JButton clicked = (JButton) e.getSource();
 			colorChange(clicked);
 		}
@@ -102,9 +130,10 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 	}
 	private void colorChange(JButton clicked) 
 	{
-		if(clicked.getBackground() == WHITE || selectorColor == WHITE)
+		if(clicked.getBackground() == WHITE || selectorColor == WHITE && clicked.getBackground() != RED)
 		{
 			clicked.setBackground(selectorColor);
+			selectorColor = WHITE;
 		}
 		repaint();
 	}
