@@ -19,14 +19,14 @@ import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 public class Commerce extends JFrame implements ActionListener, KeyListener
 {
-	private static final int XCONSTANT = 20;
-	private static final int YCONSTANT = 20;
-	private static final Color RED = Color.RED;
-	private static final Color BLUE = Color.BLUE;
-	private static final Color GREEN = Color.GREEN;
-	private static final Color WHITE = Color.WHITE;
-	private static final Color BLACK = Color.BLACK;
-	private static final Color YELLOW = Color.YELLOW;
+	private final int XCONSTANT = 20;
+	private final int YCONSTANT = 20;
+	private final Color RED = Color.RED;
+	private final Color BLUE = Color.BLUE;
+	private final Color GREEN = Color.GREEN;
+	private final Color WHITE = Color.WHITE;
+	private final Color BLACK = Color.BLACK;
+	private final Color YELLOW = Color.YELLOW;
 	private Container contentPane;
 	private Color selectorColor = WHITE;
 	Timer timer = new Timer();
