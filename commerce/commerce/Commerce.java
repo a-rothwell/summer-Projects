@@ -96,10 +96,17 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 		if(e.getSource() instanceof JButton)
 		{
 			JButton clicked = (JButton) e.getSource();
-			clicked.setBackground(selectorColor);
-			repaint();
+			colorChange(clicked);
 		}
 		
+	}
+	private void colorChange(JButton clicked) 
+	{
+		if(clicked.getBackground() == WHITE || selectorColor == WHITE)
+		{
+			clicked.setBackground(selectorColor);
+		}
+		repaint();
 	}
 	@Override
 	public void keyReleased(KeyEvent arg0) {}
