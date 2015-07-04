@@ -17,7 +17,7 @@ import javax.swing.KeyStroke;
  * @version Alpha .001A;
  */
 @SuppressWarnings("serial")
-public class Commerce extends JFrame implements ActionListener
+public class Commerce extends JFrame implements ActionListener, KeyListener
 {
 	private static final int XCONSTANT = 20;
 	private static final int YCONSTANT = 20;
@@ -33,7 +33,7 @@ public class Commerce extends JFrame implements ActionListener
 	Tile map[][] = new Tile[XCONSTANT][YCONSTANT];
 	public Commerce() 
 	{
-		addKeyMap();
+		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		contentPane = getContentPane();
@@ -50,6 +50,7 @@ public class Commerce extends JFrame implements ActionListener
 				map[i][j] = new Tile(i,j);
 				map[i][j].setLocation(i*20 + 50, j*20 + 50);
 				map[i][j].addActionListener(this);
+				map[i][j].addKeyListener(this);
 				contentPane.add(map[i][j]);
 			}
 		}
@@ -60,17 +61,12 @@ public class Commerce extends JFrame implements ActionListener
 		Commerce frame = new Commerce();
 		frame.setVisible(true);
 	}
-	protected void addKeyMap()
-	{
-		InputMap inputMap = new InputMap();
-		KeyStroke key = KeyStroke.getAWTKeyStrokeForEvent(anEvent)
-		inputMap.put(changeSelectorColor(GREEN),key);
-	}
+	@Override
 	public void keyPressed(KeyEvent k)
 	{
 		if(k.getKeyCode() == KeyEvent.VK_1)
 		{
-			
+			changeSelectorColor(GREEN);
 		}
 		else if(k.getKeyCode() == KeyEvent.VK_2)
 		{
@@ -94,6 +90,7 @@ public class Commerce extends JFrame implements ActionListener
 		selectorColor = constantColor;
 		System.out.println(selectorColor);
 	}
+	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource() instanceof JButton)
@@ -102,5 +99,10 @@ public class Commerce extends JFrame implements ActionListener
 			clicked.setBackground(selectorColor);
 			repaint();
 		}
+		
 	}
+	@Override
+	public void keyReleased(KeyEvent arg0) {}
+	@Override
+	public void keyTyped(KeyEvent e) {}
 }
