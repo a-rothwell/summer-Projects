@@ -106,7 +106,7 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 	}
 	private void repaintColorBox() 
 	{
-		colorBox.setForeground(selectorColor);
+		colorBox.setBackground(selectorColor);
 		colorBox.setOpaque(true);
 		repaint();
 	}
