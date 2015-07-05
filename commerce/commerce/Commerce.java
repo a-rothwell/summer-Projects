@@ -1,17 +1,9 @@
 package commerce;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Event;
+import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-
-import javax.swing.InputMap;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.KeyStroke;
-
+import java.util.Timer;
+import javax.swing.*;
 /**
  * @author Andrew
  * @version Alpha .001A;
@@ -28,6 +20,7 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 	private final Color WHITE = Color.WHITE;
 	private final Color BLACK = Color.BLACK;
 	private final Color YELLOW = Color.YELLOW;
+	private JLabel colorBox = new JLabel();
 	private Container contentPane;
 	private Color selectorColor = WHITE;
 	Timer timer = new Timer();
@@ -55,9 +48,16 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 				contentPane.add(map[i][j]);
 			}
 		}
-		repaint();
+		colorBox.setBounds(750, 750, 50, 50);
+		colorBox.setBorder(BorderFactory.createLineBorder(BLACK));
+		colorBox.setBackground(selectorColor);
+		colorBox.setOpaque(true);
+		colorBox.setVisible(true);
+		contentPane.add(colorBox);
 		selectorColor = RED;
+		repaintColorBox();
 		selectStart();
+		repaint();
 	}
 	private void selectStart()
 	{
@@ -102,11 +102,17 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 		{
 			changeSelectorColor(WHITE);
 		}
+		repaintColorBox();
+	}
+	private void repaintColorBox() 
+	{
+		colorBox.setForeground(selectorColor);
+		colorBox.setOpaque(true);
+		repaint();
 	}
 	private void changeSelectorColor(Color constantColor) 
 	{
 		selectorColor = constantColor;
-		System.out.println(selectorColor);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) 
