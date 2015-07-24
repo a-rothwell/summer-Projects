@@ -8,7 +8,6 @@ import javax.swing.*;
  * @author Andrew
  * @version Alpha .001A;
  */
-@SuppressWarnings("serial")
 public class Commerce extends JFrame implements ActionListener, KeyListener
 {
 	private boolean startSelected = false;
@@ -75,7 +74,6 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 		Commerce frame = new Commerce();
 		frame.setVisible(true);
 	}
-	@Override
 	public void keyPressed(KeyEvent k)
 	{
 		if(selectorColor == RED && startSelected == false)
@@ -114,7 +112,6 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 	{
 		selectorColor = constantColor;
 	}
-	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource() instanceof JButton)
@@ -143,8 +140,6 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 		}
 		repaint();
 	}
-	@Override
 	public void keyReleased(KeyEvent arg0) {}
-	@Override
 	public void keyTyped(KeyEvent e) {}
 }
