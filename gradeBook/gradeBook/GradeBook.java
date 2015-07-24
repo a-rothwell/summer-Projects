@@ -19,7 +19,11 @@ public class GradeBook extends JFrame implements ActionListener
 	private JButton logout = new JButton("Logout");
 	private JButton addNewStudent = new JButton("Add New Student");
 	private JButton addNewTeacher = new JButton("Add New Teacher");
-	private JLabel userList[] = new JLabel[schoolSize];
+	private String[] adminTableTile = {"Name" , "Username", "Password"};
+	private Object[][] userData  = {
+			{ "Stan", "Test", "Pass"}
+	};
+	private JTable userTable = new JTable(userData,adminTableTile);
 	private File inFile;
 	private File outFile;
 	private FileInputStream inFileStream;
@@ -56,6 +60,10 @@ public class GradeBook extends JFrame implements ActionListener
 		loginView();
 		
 		userIndex[0] = gen;
+		
+		contentPane.setLayout(new BorderLayout());
+		contentPane.add(userTable.getTableHeader(), BorderLayout.PAGE_START);
+		contentPane.add(userTable, BorderLayout.CENTER);
 	}
 	public static void main(String args[])
 	{
@@ -216,7 +224,8 @@ public class GradeBook extends JFrame implements ActionListener
 		showUsers();
 		repaint();
 	}
-	private void showUsers() {
+	private void showUsers() 
+	{
 		// TODO Auto-generated method stub
 		
 	}

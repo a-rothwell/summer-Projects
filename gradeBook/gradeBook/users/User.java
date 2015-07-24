@@ -2,7 +2,9 @@ package gradeBook.users;
 
 import java.io.*;
 
-public class User implements Serializable{
+public class User implements Serializable
+{
+	private String legalName;
 	private String username;
 	private String password;
 	public User(String usernameToSet, String passwordToSet)
@@ -17,5 +19,13 @@ public class User implements Serializable{
 	public String returnPassword() 
 	{
 		return password;
+	}
+	public void setName(String name)
+	{
+		name = legalName;
+	}
+	public String getName()
+	{
+		return legalName;
 	}
 }
