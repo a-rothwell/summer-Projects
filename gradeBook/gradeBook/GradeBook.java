@@ -61,9 +61,10 @@ public class GradeBook extends JFrame implements ActionListener
 		
 		userIndex[0] = gen;
 		
-		contentPane.setLayout(new BorderLayout());
-		contentPane.add(userTable.getTableHeader(), BorderLayout.PAGE_START);
-		contentPane.add(userTable, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(userTable);
+		userTable.setFillsViewportHeight(true);
+		scrollPane.setBounds(0, 300, 700, 500);
+		contentPane.add(scrollPane);
 	}
 	public static void main(String args[])
 	{
@@ -223,6 +224,17 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane.add(addNewTeacher);
 		showUsers();
 		repaint();
+	}
+	private void showDataTable()
+	{
+		JScrollPane scrollPane = new JScrollPane(userTable);
+		userTable.setFillsViewportHeight(true);
+		scrollPane.setBounds(0, 300, 700, 500);
+		contentPane.add(scrollPane);
+	}
+	private void removeDataTable()
+	{
+		contentPane.removeAll();
 	}
 	private void showUsers() 
 	{
