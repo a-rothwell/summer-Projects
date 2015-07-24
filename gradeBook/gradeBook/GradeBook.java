@@ -35,7 +35,7 @@ public class GradeBook extends JFrame implements ActionListener
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("GradeBook");
+		setTitle("GradeBook Window");
 		setSize(700,700);
 		setLocationRelativeTo(null);
 		setResizable(false);
