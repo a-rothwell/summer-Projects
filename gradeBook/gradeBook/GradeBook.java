@@ -1,12 +1,10 @@
 package gradeBook;
 
 import gradeBook.users.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-
 import javax.swing.*;
 
 public class GradeBook extends JFrame implements ActionListener
@@ -30,6 +28,7 @@ public class GradeBook extends JFrame implements ActionListener
 	private ObjectOutputStream outObjectStream;
 	private User[] userIndex = new User[schoolSize];
 	private User currentUser;
+	private Admin gen = new Admin("gen", "pass");
 	public GradeBook() 
 	{
 		contentPane = getContentPane();
@@ -55,6 +54,8 @@ public class GradeBook extends JFrame implements ActionListener
 		logout.setBounds(0,0,50,50);
 		logout.addActionListener(this);
 		loginView();
+		
+		userIndex[0] = gen;
 	}
 	public static void main(String args[])
 	{
@@ -123,19 +124,24 @@ public class GradeBook extends JFrame implements ActionListener
 	}
 	private void changeView() 
 	{
+		System.out.println(currentUser.getClass().toString());
 		clearCurrentView();
-		if(currentUser.getClass().toString().equals("class GradeBook.Users.Admin"))
+		if(currentUser.getClass().toString().equals("class gradeBook.users.Admin"))
 		{
+			System.out.println("Admin Perspective");
 			showAdminPerspective();
 		}
-		else if(currentUser.getClass().toString().equals("class GradeBook.Users.Teacher"))
+		else if(currentUser.getClass().toString().equals("class gradeBook.users.Teacher"))
 		{
+			System.out.println("Teacher Perspective");
 			showTeacherPerspective();
 		}
-		else if(currentUser.getClass().toString().equals("class GradeBook.Users.Student"))
+		else if(currentUser.getClass().toString().equals("class gradeBook.users.Student"))
 		{
+			System.out.println("Student Perspective");
 			showStudentPerspective();
 		}
+		System.out.println("Change View");
 	}
 	private boolean checkPassword(String password)
 	{
