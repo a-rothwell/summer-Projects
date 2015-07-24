@@ -32,7 +32,7 @@ public class Commerce extends JFrame implements ActionListener, KeyListener
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Commerce");
+		setTitle("Commerce Text");
 		setSize(1000,1000);
 		setLocationRelativeTo(null);
 		setResizable(false);
