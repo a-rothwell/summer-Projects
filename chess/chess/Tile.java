@@ -1,9 +1,16 @@
 package chess;
 
-public class Tile {
+import java.awt.Point;
 
-	public Tile() {
-		// TODO Auto-generated constructor stub
+import javax.swing.JButton;
+
+public class Tile extends JButton 
+{
+	private Point location;
+	
+	public Tile(String xLetter, int yLocation) 
+	{
+		
 	}
 
 }
