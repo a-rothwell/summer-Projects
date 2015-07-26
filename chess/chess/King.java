@@ -1,9 +1,11 @@
 package chess;
 
-public class King {
+public class King extends Peice
+{
 
-	public King() {
-		// TODO Auto-generated constructor stub
+	public King() 
+	{
+		
 	}
 
 }

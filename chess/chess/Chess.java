@@ -14,7 +14,7 @@ public class Chess extends JFrame implements ActionListener
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("GradeBook Window");
+		setTitle("Chess");
 		setSize(700,700);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -38,6 +38,7 @@ public class Chess extends JFrame implements ActionListener
 			{
 				board[i][j] = new Tile(i,j);
 				board[i][j].setBounds(50 * i + 100, 50*j + 100, 50, 50);
+				board[i][j].addActionListener(this);
 				contentPane.add(board[i][j]);
 			}
 		}

@@ -1,6 +1,7 @@
 package chess;
 
-public class Rook {
+public class Rook extends Peice
+{
 
 	public Rook() {
 		// TODO Auto-generated constructor stub

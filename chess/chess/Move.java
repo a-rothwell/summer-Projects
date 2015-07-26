@@ -1,9 +1,9 @@
 package chess;
 
-public class Bishop extends Peice
-{
+public class Move {
 
-	public Bishop() {
+	public Move() 
+	{
 		// TODO Auto-generated constructor stub
 	}
 
