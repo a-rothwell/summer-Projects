@@ -8,7 +8,7 @@ public class Tile extends JButton
 {
 	private Point location;
 	
-	public Tile(String xLetter, int yLocation) 
+	public Tile(int xLetter, int yLocation) 
 	{
 		
 	}
