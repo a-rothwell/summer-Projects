@@ -8,7 +8,11 @@ import gradeBook.GradeBook;
 
 public class Chess extends JFrame implements ActionListener
 {
+	private final ImageIcon BLACK_PAWN = new ImageIcon("summer-Projects/chess/images/black_pawn.png");
+	private final ImageIcon WHITE_PAWN = new ImageIcon("summer-Projects/chess/images/white_pawn.png");
 	private Container contentPane;
+	private final int XSIZE = 8,YSIZE = 8;
+	private Tile board[][] = new Tile[XSIZE][YSIZE];
 	public Chess() 
 	{
 		contentPane = getContentPane();
@@ -19,19 +23,29 @@ public class Chess extends JFrame implements ActionListener
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setup();
-		// TODO Auto-generated constructor stub
 	}
 
 	private void setup() 
 	{
 		createBoard();
-		
+		setPeices();
+		repaint();
+	}
+
+	private void setPeices() 
+	{
+		//Sets both colors of pawns
+		for(int i = 0; i < 8;i++)
+		{
+			board[i][1].setIcon(BLACK_PAWN);
+			board[i][6].setIcon(WHITE_PAWN);
+			System.out.println("Icons set");
+		}
+		repaint();
 	}
 
 	private void createBoard() 
 	{
-		final int XSIZE = 8,YSIZE = 8;
-		Tile board[][] = new Tile[XSIZE][YSIZE];
 		for(int i = 0; i<XSIZE; i++)
 		{
 			for(int j = 0; j<YSIZE; j++)

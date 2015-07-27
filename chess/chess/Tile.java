@@ -20,6 +20,7 @@ public class Tile extends JButton
 			backGroundColor = xLetter % 2 == 0 ?Color.WHITE: Color.BLACK;
 		}
 		this.setBackground(backGroundColor);
+		this.setBorderPainted(false);
 	}
 	
 }
