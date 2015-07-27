@@ -8,8 +8,8 @@ import gradeBook.GradeBook;
 
 public class Chess extends JFrame implements ActionListener
 {
-	private final ImageIcon BLACK_PAWN = new ImageIcon("summer-Projects/chess/images/black_pawn.png");
-	private final ImageIcon WHITE_PAWN = new ImageIcon("summer-Projects/chess/images/white_pawn.png");
+	private final Icon BLACK_PAWN = new ImageIcon("black_pawn.png");
+	private final Icon WHITE_PAWN = new ImageIcon("white_pawn.png");
 	private Container contentPane;
 	private final int XSIZE = 8,YSIZE = 8;
 	private Tile board[][] = new Tile[XSIZE][YSIZE];
